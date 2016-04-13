@@ -41,12 +41,11 @@ class YankeeScore::ScoreScraper
       g.inning = game_hash[:status][:inning]
       g.inning_state = game_hash[:status][:inning_state]
 
-      # g.matchup = game_hash[:game_media][:media][:title]
 
       if game_hash.has_key?(:linescore)
         g.home_team.runs = game_hash[:linescore][:r][:home]
         g.away_team.runs = game_hash[:linescore][:r][:away]
-        g.score = "#{g.away_team.runs} - #{g.home_team.runs}"
+        g.score = "#{g.away_team.runs}-#{g.home_team.runs}"
       end
 
       g.save
