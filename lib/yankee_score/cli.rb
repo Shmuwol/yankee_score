@@ -1,6 +1,4 @@
-require "pry"
 class YankeeScore::CLI
-  attr_accessor :game
 
   def initialize
     @score_scraper = YankeeScore::ScoreScraper.new
@@ -47,11 +45,10 @@ class YankeeScore::CLI
     end
   end
 
-  def search_team(team = nil)
-    YankeeScore::Game.all.each do |game|
-      if team == game.home_team.name || team == game.away_team.name
+  def search_team(team_abbrev)
+    games = YankeeScore::Game.find_team_by_abbrev(team_abbrev)
+    games.each do |game|
         print_game(game)
-      end
     end
   end
 
