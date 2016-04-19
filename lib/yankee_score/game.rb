@@ -53,13 +53,13 @@ class YankeeScore::Game
       team_abbrev == team.home_team.name || team_abbrev == team.away_team.name
     end
   end
-  
+
   def is_over?
     END_GAME_STATE.include?(self.status)
   end
 
   def is_active?
-    self.inning.to_i >= 1 && !is_over? && PRE_GAME_STATE.include?(status)
+    self.inning.to_i >= 1 && !is_over? && !PRE_GAME_STATE.include?(status)
   end
 
 
