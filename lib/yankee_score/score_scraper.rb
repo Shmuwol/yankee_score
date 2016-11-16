@@ -24,9 +24,18 @@ class YankeeScore::ScoreScraper
 
 
   def load_games
-    games.select do |game_hash|
-      YankeeScore::Game.create_from_json(game_hash)
+    if valid_game?
+      games.select do |game_hash|
+        YankeeScore::Game.create_from_json(game_hash)
+      end
+    else
+      puts "Dosn't seem to be any games today, try again tomorrow."
+      exit
     end
+  end
+
+  def valid_game?
+    !!games
   end
 
 end

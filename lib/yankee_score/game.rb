@@ -15,7 +15,7 @@ class YankeeScore::Game
     @away_team = away_team
   end
 
-  @@all = []
+  @@all ||= []
 
   def self.all
     @@all
@@ -61,9 +61,4 @@ class YankeeScore::Game
   def is_active?
     self.inning.to_i >= 1 && !is_over? && !PRE_GAME_STATE.include?(status)
   end
-
-
-
-
-
 end
